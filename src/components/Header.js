@@ -1,18 +1,16 @@
 // Header
 
-// import Nav from "./Nav";
+import Nav from "./Nav";
+import { Link } from "react-router-dom";
 import { appTitle } from "../globals/globals";
 
 const Header = () => {
   return (
     <header>
-      {/* The below anchor tag code is incorrect...
-			    Use React Router's Link component for internal 
-				links */}
       <h1>
-        <a href="/">{appTitle}</a>
+        <Link to="/">{appTitle}</Link>
       </h1>
-      {/* <Nav /> */}
+      {<Nav />}
     </header>
   );
 };
