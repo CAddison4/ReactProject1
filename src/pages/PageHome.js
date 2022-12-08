@@ -28,19 +28,53 @@
 //             • Optionally the entire movie listing can be clickable to the 
 //               individual movie page
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { appTitle } from '../globals/globals';
+import urlBuilder from '../utils/api-url-builder';
+import Movie from "../components/Movie";
 
 const PageHome = () => {
+    const [movieFilter, setMovieFilter] = useState("popular");
+    const [movieData, setMovieData] = useState([]);
+
+    async function getMovieData(filterStr) {
+        try {
+            const apiEndpoint = urlBuilder(filterStr);
+            const dataObject = await fetch(apiEndpoint);
+            console.log(dataObject);
+            const results = dataObject.results;
+            console.log(results);
+            const movieResults = await results.json();
+            console.log(movieResults);
+            return movieResults;
+        }
+        catch (error){
+            console.log("Error loading movie data");
+            return [];
+        }
+    }
 
     useEffect(() => {
 		document.title = `${appTitle} - Movies`;
-	}, []);
+        const newMovieData = getMovieData(movieFilter);
+        setMovieData(newMovieData);
+	}, [movieFilter]);
+
+
+    function createMovieComponents() {
+        movieData.map((movie, i) => {
+            return(
+                <Movie key={i} title={movie.title}/>
+            );
+        })
+    }
 
     return (
         <section>
             <h2>Movies Page</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit porro, dolorem, quod facere enim voluptate provident quo labore vero repellat nemo animi ad exercitationem rem quos, possimus libero deleniti laudantium?</p>
+            <div className="movies">
+                {createMovieComponents()}
+            </div>
         </section>
     );
 
