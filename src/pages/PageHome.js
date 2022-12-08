@@ -34,7 +34,7 @@ import { appTitle } from '../globals/globals';
 const PageHome = () => {
 
     useEffect(() => {
-		document.title = `${appTitle} - Home`;
+		document.title = `${appTitle} - Movies`;
 	}, []);
 
     return (
