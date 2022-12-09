@@ -23,38 +23,52 @@
 
   // Make sure id is a whole number between 1 and 6 (inclusive)
   // ...If is not...then send them back to the Portfolio page
-import { Link } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { appTitle } from '../globals/globals';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { imgBasePath, localImageFolderPath } from "../globals/globals";
 import '../styles/App.css';
+import { GlobalContext } from '../context/GlobalState';
 
 const PageMovieDetails = ({handleFavourite }) => {
+    const {movieData, setMovieData} = useContext(GlobalContext);
+    let { id } = useParams();
+    id = id * 1;
     useEffect(() => {
-		document.title = `${appTitle} - Movie Details`;
-	}, []);
+        document.title = `${appTitle} - Details`;
+	}, [id]);
+    
+    // guard to make sure id is a number
+    if (isNaN(id)) {
+        return <Navigate to="/" replace={true} />;
+      }
+    // check if id is in movieData, otherwise redirect to home
+    const movie = movieData.filter((item) => item.id === id)[0];
+    if (!movie) {
+        console.log("we got here");
+        return <Navigate to="/" replace={true} />;
+    }
 
     return(
         <div className="movie-card">
-            test
-        {/* //     <div className="movie-poster">
-        //         <img src={movie.poster_path ? `${imgBasePath}${movie.poster_path}` :`${localImageFolderPath}logo192.png`} alt={`Poster for ${movie.title}`}/>
-        //     </div>
+            <div className="movie-poster">
+                <img src={movie.poster_path ? `${imgBasePath}${movie.poster_path}` :`${localImageFolderPath}logo192.png`} alt={`Poster for ${movie.title}`}/>
+            </div>
 
-        //     <div className="movie-details">
-        //         <p>Title: { movie.title }</p>
-        //         <p>Average Rating: {movie.vote_average}/10</p>
-        //         <p>Year: { movie.release_date }</p>
-        //         <p>Description: { movie.overview }</p>
-        //     </div>
+            <div className="movie-details">
+                <p>Title: { movie.title }</p>
+                <p>Average Rating: {movie.vote_average}/10</p>
+                <p>Year: { movie.release_date }</p>
+                <p>Description: { movie.overview }</p>
+            </div>
 
-        //     <div className="button-bar">
-        //         <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
-        //         <button onClick={handleFavourite} className="favourites-button">Add to Favourites</button>
-        //     </div> */}
+            <div className="button-bar">
+                <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
+                <button onClick={handleFavourite} className="favourites-button">Add to Favourites</button>
+            </div>
         </div>
 
-
+        // add back button
     );
 };
 
