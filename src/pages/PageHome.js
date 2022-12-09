@@ -36,39 +36,61 @@ import Movie from "../components/Movie";
 const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     async function getMovieData(filterStr) {
-        try {
-            const apiEndpoint = urlBuilder(filterStr);
-            const dataObject = await fetch(apiEndpoint);
-            console.log(dataObject);
-            const results = dataObject.results;
-            console.log(results);
-            const movieResults = await results.json();
-            console.log(movieResults);
-            return movieResults;
+        const apiEndpoint = urlBuilder(filterStr);
+        setLoading(true);
+        const dataObject = await fetch(apiEndpoint)
+            .then((res) => res.json())
+            .then((movieData) => {
+                setMovieData(movieData);            
+                console.log("data: ", movieData);
+            return movieData;})
+            // console.log("data object", dataObject)
+            // movieData &&
+
+            // const results = dataObject.results;
+            // console.log("results", results);
+            // const movieResults = await results.json();
+            // console.log("movie results:", movieResults);
+
+            .catch ((error) => {
+                console.log("Error loading movie data 1", error);
+                // return [];
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+
+        if(loading){
+            return <p>Data is loading...</p>
         }
-        catch (error){
-            console.log("Error loading movie data");
-            return [];
-        }
+        // return movieData;
     }
 
     useEffect(() => {
 		document.title = `${appTitle} - Movies`;
+
         const newMovieData = getMovieData(movieFilter);
+        console.log("newMovieData", newMovieData);
         setMovieData(newMovieData);
 	}, [movieFilter]);
 
 
     function createMovieComponents() {
-        movieData.map((movie, i) => {
+        movieData &&
+
+        console.log("movie Data", movieData)
+        movieData.map((movie) => {
             return(
-                <Movie key={i} title={movie.title}/>
+                <Movie key={movie.id} title={movie.title}/>
             );
         })
     }
 
+    // console.log(movieData);
+    if (!movieData.length) return <h3>Loading...</h3>;
     return (
         <section>
             <h2>Movies Page</h2>
