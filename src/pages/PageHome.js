@@ -28,22 +28,21 @@
 //             • Optionally the entire movie listing can be clickable to the 
 //               individual movie page
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { appTitle } from '../globals/globals';
 import urlBuilder from '../utils/api-url-builder';
 import Movie from "../components/Movie";
 import '../styles/App.css';
+import { GlobalContext } from '../context/GlobalState';
 
 const POP_API = "popular";
 const UPCOMING_API = "upcoming";
 const NOW_PLAYING_API = "now_playing";
 const TOP_RATED_API = "top_rated";
 
-
-
 const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
-    const [movieData, setMovieData] = useState([]);
+    const {movieData, setMovieData} = useContext(GlobalContext);
 
     const fetchMovieData = (filterStr) => {
         const apiEndpoint = urlBuilder(filterStr);
@@ -51,7 +50,7 @@ const PageHome = () => {
             .then(res => res.json())
             .catch((error) => {console.log(error.message)});
         filteredMovieData.then(data => {
-            setMovieData(data.results.slice(0, 12));
+            setMovieData(data.results);
         });
         // fetch(apiEndpoint)
         //     .then(res => {
@@ -70,6 +69,7 @@ const PageHome = () => {
 		document.title = `${appTitle} - Movies`;
         fetchMovieData(movieFilter);
 	}, [movieFilter]);
+
 
     function updateMovieFilter(e) {
         switch(e.target.value){
@@ -94,7 +94,7 @@ const PageHome = () => {
 
     const createMovieComponents = () => {
         const movies = movieData.map((movie) => 
-            <Movie key={ movie.id } movie={ movie }/>
+            <Movie key={ movie.id } movie={ movie } className="movie"/>
         );
         return(
             <div className="movies">
@@ -112,7 +112,7 @@ const PageHome = () => {
     const handleFavourite = () => {
         return
     }
-
+    
     return (
         <section>
             <h2>Movies Page</h2>
