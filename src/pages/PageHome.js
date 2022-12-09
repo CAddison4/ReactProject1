@@ -69,8 +69,8 @@ const PageHome = () => {
     }
 
     const createMovieComponents = () => {
-        const movies = movieData.map((movie, i) => 
-            <Movie key={ i } title={ movie.title }/>
+        const movies = movieData.map((movie) => 
+            <Movie key={ movie.id } title={ movie.title }/>
         );
         return(
             <div className="movies">
