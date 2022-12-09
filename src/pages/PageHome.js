@@ -37,28 +37,27 @@ const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
 
-    async function getMovieData(filterStr) {
+    async function fetchMovieData(filterStr) {
         try {
             const apiEndpoint = urlBuilder(filterStr);
-            const dataObject = await fetch(apiEndpoint);
-            console.log(dataObject);
-            const results = dataObject.results;
-            console.log(results);
-            const movieResults = await results.json();
-            console.log(movieResults);
-            return movieResults;
+            const res = await fetch(apiEndpoint);
+            console.log("res", res);
+            const resData = await res.json();
+            console.log("resData", resData);
+            const newMovieData = resData.results;
+            console.log("new movie data", newMovieData);
+            setMovieData(newMovieData);
+            console.log("movie data state", movieData);
         }
-        catch (error){
-            console.log("Error loading movie data");
-            return [];
+        catch(error) {
+            console.log(error.message);
         }
     }
 
     useEffect(() => {
 		document.title = `${appTitle} - Movies`;
-        const newMovieData = getMovieData(movieFilter);
-        setMovieData(newMovieData);
-	}, [movieFilter]);
+        fetchMovieData("popular");
+	}, []);
 
 
     function createMovieComponents() {
