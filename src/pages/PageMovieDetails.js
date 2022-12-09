@@ -23,20 +23,38 @@
 
   // Make sure id is a whole number between 1 and 6 (inclusive)
   // ...If is not...then send them back to the Portfolio page
-import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { appTitle } from '../globals/globals';
+import { useEffect } from 'react';
+import { imgBasePath, localImageFolderPath } from "../globals/globals";
 import '../styles/App.css';
 
-const PageMovieDetails = () => {
+const PageMovieDetails = ({handleFavourite }) => {
     useEffect(() => {
 		document.title = `${appTitle} - Movie Details`;
 	}, []);
 
-    return (
-        <section>
-            <h2>Movie Page</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit porro, dolorem, quod facere enim voluptate provident quo labore vero repellat nemo animi ad exercitationem rem quos, possimus libero deleniti laudantium?</p>
-        </section>
+    return(
+        <div className="movie-card">
+            test
+        {/* //     <div className="movie-poster">
+        //         <img src={movie.poster_path ? `${imgBasePath}${movie.poster_path}` :`${localImageFolderPath}logo192.png`} alt={`Poster for ${movie.title}`}/>
+        //     </div>
+
+        //     <div className="movie-details">
+        //         <p>Title: { movie.title }</p>
+        //         <p>Average Rating: {movie.vote_average}/10</p>
+        //         <p>Year: { movie.release_date }</p>
+        //         <p>Description: { movie.overview }</p>
+        //     </div>
+
+        //     <div className="button-bar">
+        //         <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
+        //         <button onClick={handleFavourite} className="favourites-button">Add to Favourites</button>
+        //     </div> */}
+        </div>
+
+
     );
 };
 

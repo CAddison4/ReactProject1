@@ -39,6 +39,8 @@ const UPCOMING_API = "upcoming";
 const NOW_PLAYING_API = "now_playing";
 const TOP_RATED_API = "top_rated";
 
+
+
 const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
@@ -49,7 +51,7 @@ const PageHome = () => {
             .then(res => res.json())
             .catch((error) => {console.log(error.message)});
         filteredMovieData.then(data => {
-            setMovieData(data.results);
+            setMovieData(data.results.slice(0, 12));
         });
         // fetch(apiEndpoint)
         //     .then(res => {
@@ -68,7 +70,6 @@ const PageHome = () => {
 		document.title = `${appTitle} - Movies`;
         fetchMovieData(movieFilter);
 	}, [movieFilter]);
-
 
     function updateMovieFilter(e) {
         switch(e.target.value){
@@ -111,7 +112,7 @@ const PageHome = () => {
     const handleFavourite = () => {
         return
     }
-    
+
     return (
         <section>
             <h2>Movies Page</h2>
