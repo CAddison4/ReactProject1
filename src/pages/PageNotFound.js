@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { appTitle } from '../globals/globals';
+import '../styles/App.css';
 
 const PageNotFound = () => {
 

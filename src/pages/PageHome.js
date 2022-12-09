@@ -32,6 +32,7 @@ import { useEffect, useState } from 'react';
 import { appTitle } from '../globals/globals';
 import urlBuilder from '../utils/api-url-builder';
 import Movie from "../components/Movie";
+import '../styles/App.css';
 
 const POP_API = "popular";
 const UPCOMING_API = "upcoming";

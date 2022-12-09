@@ -25,6 +25,7 @@
   // ...If is not...then send them back to the Portfolio page
 import { useEffect } from 'react';
 import { appTitle } from '../globals/globals';
+import '../styles/App.css';
 
 const PageMovieDetails = () => {
     useEffect(() => {

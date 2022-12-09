@@ -17,6 +17,7 @@
 
 import { useEffect } from 'react';
 import { appTitle } from '../globals/globals';
+import '../styles/App.css';
 
 const PageAbout = () => {
 
