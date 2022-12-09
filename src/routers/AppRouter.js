@@ -2,7 +2,7 @@
 
 // Router Components
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { GlobalProvider } from "../context/GlobalState";
 // Components
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -17,7 +17,8 @@ import PageNotFound from "../pages/PageNotFound";
 function AppRouter() {
   return (
     <BrowserRouter>
-      <div className="wrapper">
+    <GlobalProvider>
+    <div className="wrapper">
         <Header />
         <main>
           <Routes>
@@ -35,6 +36,8 @@ function AppRouter() {
         </main>
         <Footer />
       </div>
+    </GlobalProvider>
+
     </BrowserRouter>
   );
 }
