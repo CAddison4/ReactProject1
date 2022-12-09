@@ -33,6 +33,11 @@ import { appTitle } from '../globals/globals';
 import urlBuilder from '../utils/api-url-builder';
 import Movie from "../components/Movie";
 
+const POP_API = "popular";
+const UPCOMING_API = "upcoming";
+const NOW_PLAYING_API = "now_playing";
+const TOP_RATED_API = "top_rated";
+
 const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
@@ -64,8 +69,25 @@ const PageHome = () => {
 	}, [movieFilter]);
 
 
-    function updateMovieFilter() {
-        movieFilter === "popular" ? setMovieFilter("top_rated") : setMovieFilter("popular");
+    function updateMovieFilter(e) {
+        switch(e.target.value){
+            // console.log(e.target.value)
+            case(POP_API):
+               setMovieFilter(POP_API)
+               break;
+            case(TOP_RATED_API):
+               setMovieFilter(TOP_RATED_API)
+               break;
+            case(UPCOMING_API):
+               setMovieFilter(UPCOMING_API)
+               break;
+            case(NOW_PLAYING_API):
+               setMovieFilter(NOW_PLAYING_API)
+               break;
+            default:
+               setMovieFilter(POP_API)
+               return POP_API;
+        }
     }
 
     const createMovieComponents = () => {
@@ -82,8 +104,14 @@ const PageHome = () => {
     return (
         <section>
             <h2>Movies Page</h2>
+            <select onChange={(updateMovieFilter)}>
+                <option value="">Filter By Group</option>
+                <option value="popular">Popular</option>
+                <option value="top_rated">Top Rated</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="now_playing">Now Playing</option>
+            </select>
             {createMovieComponents()}
-            <button onClick={updateMovieFilter}>Update Filter</button>
         </section>
     );
 
