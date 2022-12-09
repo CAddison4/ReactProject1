@@ -4,6 +4,7 @@ import appReducer from './appReducer';
 // Initial state
 const initialState = {
   movieData: [],
+  favourites: [],
 };
 
 // Create context
@@ -21,11 +22,28 @@ function GlobalProvider({ children }) {
     });
   }
 
+  function addToFavourites(movie){
+    dispatch({
+        type: "ADD_TO_FAVOURITES",
+        payload: movie,
+    });
+  };
+
+  function removeFromFavourites(movie){
+    dispatch({
+        type: "REMOVE_FROM_FAVOURITES",
+        payload: movie,
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         movieData: state.movieData,
+        favourites: state.favourites,
         setMovieData,
+        addToFavourites, 
+        removeFromFavourites,
       }}
     >
       {children}
