@@ -37,44 +37,53 @@ const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
 
-    async function getMovieData(filterStr) {
-        try {
-            const apiEndpoint = urlBuilder(filterStr);
-            const dataObject = await fetch(apiEndpoint);
-            console.log(dataObject);
-            const results = dataObject.results;
-            console.log(results);
-            const movieResults = await results.json();
-            console.log(movieResults);
-            return movieResults;
-        }
-        catch (error){
-            console.log("Error loading movie data");
-            return [];
-        }
+    const fetchMovieData = (filterStr) => {
+        const apiEndpoint = urlBuilder(filterStr);
+        const filteredMovieData = fetch(apiEndpoint)
+            .then(res => res.json())
+            .catch((error) => {console.log(error.message)});
+        filteredMovieData.then(data => {
+            setMovieData(data.results);
+        });
+        // fetch(apiEndpoint)
+        //     .then(res => {
+        //         res.json();
+        //     })
+        //     .then(resDataObj => {
+        //         const newMovieData = resDataObj.results;
+        //         setMovieData(newMovieData);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error.message);
+        //     });
     }
 
     useEffect(() => {
 		document.title = `${appTitle} - Movies`;
-        const newMovieData = getMovieData(movieFilter);
-        setMovieData(newMovieData);
+        fetchMovieData(movieFilter);
 	}, [movieFilter]);
 
 
-    function createMovieComponents() {
-        movieData.map((movie, i) => {
-            return(
-                <Movie key={i} title={movie.title}/>
-            );
-        })
+    function updateMovieFilter() {
+        movieFilter === "popular" ? setMovieFilter("top_rated") : setMovieFilter("popular");
+    }
+
+    const createMovieComponents = () => {
+        const movies = movieData.map((movie) => 
+            <Movie key={ movie.id } title={ movie.title }/>
+        );
+        return(
+            <div className="movies">
+                {movies}
+            </div>
+        );
     }
 
     return (
         <section>
             <h2>Movies Page</h2>
-            <div className="movies">
-                {createMovieComponents()}
-            </div>
+            {createMovieComponents()}
+            <button onClick={updateMovieFilter}>Update Filter</button>
         </section>
     );
 
