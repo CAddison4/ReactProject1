@@ -37,43 +37,53 @@ const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const [movieData, setMovieData] = useState([]);
 
-    async function fetchMovieData(filterStr) {
-        try {
-            const apiEndpoint = urlBuilder(filterStr);
-            const res = await fetch(apiEndpoint);
-            console.log("res", res);
-            const resData = await res.json();
-            console.log("resData", resData);
-            const newMovieData = resData.results;
-            console.log("new movie data", newMovieData);
-            setMovieData(newMovieData);
-            console.log("movie data state", movieData);
-        }
-        catch(error) {
-            console.log(error.message);
-        }
+    const fetchMovieData = (filterStr) => {
+        const apiEndpoint = urlBuilder(filterStr);
+        const filteredMovieData = fetch(apiEndpoint)
+            .then(res => res.json())
+            .catch((error) => {console.log(error.message)});
+        filteredMovieData.then(data => {
+            setMovieData(data.results);
+        });
+        // fetch(apiEndpoint)
+        //     .then(res => {
+        //         res.json();
+        //     })
+        //     .then(resDataObj => {
+        //         const newMovieData = resDataObj.results;
+        //         setMovieData(newMovieData);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error.message);
+        //     });
     }
 
     useEffect(() => {
 		document.title = `${appTitle} - Movies`;
-        fetchMovieData("popular");
-	}, []);
+        fetchMovieData(movieFilter);
+	}, [movieFilter]);
 
 
-    function createMovieComponents() {
-        movieData.map((movie, i) => {
-            return(
-                <Movie key={i} title={movie.title}/>
-            );
-        })
+    function updateMovieFilter() {
+        movieFilter === "popular" ? setMovieFilter("top_rated") : setMovieFilter("popular");
+    }
+
+    const createMovieComponents = () => {
+        const movies = movieData.map((movie, i) => 
+            <Movie key={ i } title={ movie.title }/>
+        );
+        return(
+            <div className="movies">
+                {movies}
+            </div>
+        );
     }
 
     return (
         <section>
             <h2>Movies Page</h2>
-            <div className="movies">
-                {createMovieComponents()}
-            </div>
+            {createMovieComponents()}
+            <button onClick={updateMovieFilter}>Update Filter</button>
         </section>
     );
 
