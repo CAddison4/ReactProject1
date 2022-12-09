@@ -92,7 +92,7 @@ const PageHome = () => {
 
     const createMovieComponents = () => {
         const movies = movieData.map((movie) => 
-            <Movie key={ movie.id } title={ movie.title }/>
+            <Movie key={ movie.id } movie={ movie }/>
         );
         return(
             <div className="movies">
@@ -101,6 +101,16 @@ const PageHome = () => {
         );
     }
 
+    // handleDetails, handleFavourite 
+
+    const handleDetails = () => {
+        return
+    }
+
+    const handleFavourite = () => {
+        return
+    }
+    
     return (
         <section>
             <h2>Movies Page</h2>
