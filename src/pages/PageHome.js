@@ -43,6 +43,7 @@ const TOP_RATED_API = "top_rated";
 const PageHome = () => {
     const [movieFilter, setMovieFilter] = useState("popular");
     const {movieData, setMovieData} = useContext(GlobalContext);
+    const {favourites, addToFavourites, removeFromFavourites} = useContext(GlobalContext);
 
     const fetchMovieData = (filterStr) => {
         const apiEndpoint = urlBuilder(filterStr);
@@ -94,7 +95,7 @@ const PageHome = () => {
 
     const createMovieComponents = () => {
         const movies = movieData.map((movie) => 
-            <Movie key={ movie.id } movie={ movie } className="movie"/>
+            <Movie key={ movie.id } movie={ movie } handleFavourite={ addToFavourites } className="movie"/>
         );
         return(
             <div className="movies">
@@ -106,10 +107,6 @@ const PageHome = () => {
     // handleDetails, handleFavourite 
 
     const handleDetails = () => {
-        return
-    }
-
-    const handleFavourite = () => {
         return
     }
     

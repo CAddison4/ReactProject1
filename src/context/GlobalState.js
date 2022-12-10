@@ -1,10 +1,11 @@
 import React, { createContext, useReducer } from 'react';
 import appReducer from './appReducer';
+import { getFavouritesLS } from "../utils/favourites";
 
 // Initial state
 const initialState = {
   movieData: [],
-  favourites: [],
+  favourites: [], // getFavouritesLS()
 };
 
 // Create context
@@ -36,6 +37,13 @@ function GlobalProvider({ children }) {
     });
   };
 
+  // function getFavourites(){
+  //   dispatch({
+  //       type: "GET_FAVOURITES",
+  //       payload: {},
+  //   });
+  // };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -44,6 +52,7 @@ function GlobalProvider({ children }) {
         setMovieData,
         addToFavourites, 
         removeFromFavourites,
+        // getFavourites,
       }}
     >
       {children}

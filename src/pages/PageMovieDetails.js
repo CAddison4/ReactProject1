@@ -23,15 +23,17 @@
 
   // Make sure id is a whole number between 1 and 6 (inclusive)
   // ...If is not...then send them back to the Portfolio page
-import { Link, useParams, Navigate } from "react-router-dom";
-import { appTitle } from '../globals/globals';
-import { useEffect, useContext } from 'react';
-import { imgBasePath, localImageFolderPath } from "../globals/globals";
+
 import '../styles/App.css';
+import { appTitle } from '../globals/globals';
+import { imgBasePath, localImageFolderPath } from "../globals/globals";
+import { Link, useParams, Navigate } from "react-router-dom";
+import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 const PageMovieDetails = ({handleFavourite }) => {
-    const {movieData, setMovieData} = useContext(GlobalContext);
+    const {favourites, addToFavourites, removeFromFavourites} = useContext(GlobalContext);
+    const {movieData} = useContext(GlobalContext);
     let { id } = useParams();
     id = id * 1;
     useEffect(() => {

@@ -19,20 +19,44 @@
 //                      the individual movie page
 
 
-import { useEffect } from 'react';
-import { appTitle } from '../globals/globals';
 import '../styles/App.css';
+import { appTitle } from '../globals/globals';
+import Movie from '../components/Movie';
+import { Link, useParams, Navigate } from "react-router-dom";
+import { useEffect, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 const PageFavourites = () => {
+    const {favourites, removeFromFavourites} = useContext(GlobalContext);
 
     useEffect(() => {
 		document.title = `${appTitle} - Favourites`;
 	}, []);
 
+    function displayEmptyMessage() {
+        return(
+        <p>
+            Sorry, you have no favourites yet. Return to the <Link to="/">home</Link> page
+            to add some movies to your favourites.
+        </p>
+      );
+    }
+
+    function createMovieComponents() {
+        const movies = favourites.map((movie) => 
+            <Movie key={ movie.id } movie={ movie } handleFavourite={ removeFromFavourites } className="movie"/>
+        );
+        return(
+            <div className="movies">
+                {movies}
+            </div>
+        );
+    } 
+    
     return (
         <section>
-            <h2>Favourites Page</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit porro, dolorem, quod facere enim voluptate provident quo labore vero repellat nemo animi ad exercitationem rem quos, possimus libero deleniti laudantium?</p>
+            <h2>Favourites</h2>
+            {favourites.length > 0 ?  createMovieComponents() : displayEmptyMessage()}
         </section>
     );
 

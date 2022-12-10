@@ -18,7 +18,7 @@ function Movie({ movie, handleFavourite }) {
 
             <div className="button-bar">
                 <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
-                <button onClick={handleFavourite} className="favourites-button">Add to Favourites</button>
+                <button onClick={() => {handleFavourite(movie)}} className="favourites-button">Add to Favourites</button>
             </div>
         </div>
 
