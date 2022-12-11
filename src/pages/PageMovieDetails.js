@@ -67,7 +67,9 @@ const PageMovieDetails = () => {
 
             <div className="button-bar">
                 <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
-                <button onClick={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites } className="favourites-button">Add to Favourites</button>
+                <button onClick={ isFav(favourites, movie.id) ? () => {removeFromFavourites(movie)} : () => {addToFavourites(movie)} } className="favourites-button">
+                { isFav(favourites, movie.id) ? "Remove From Favourites" : "Add To Favourites" }
+                </button>
             </div>
         </div>
 

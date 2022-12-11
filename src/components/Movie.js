@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import { imgBasePath, localImageFolderPath } from "../globals/globals";
 import '../styles/App.css';
 
-function Movie({ movie, handleFavourite }) {
+function Movie({ movie, handleFavourite, favButtonText }) {
     return(
         <div className="movie-card">
             <div className="movie-poster">
@@ -18,7 +18,7 @@ function Movie({ movie, handleFavourite }) {
 
             <div className="button-bar">
                 <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
-                <button onClick={() => {handleFavourite(movie)}} className="favourites-button">Add to Favourites</button>
+                <button onClick={() => {handleFavourite(movie)}} className="favourites-button">{favButtonText}</button>
             </div>
         </div>
 

@@ -48,6 +48,7 @@ const PageFavourites = () => {
                 key={ movie.id } 
                 movie={ movie } 
                 handleFavourite={ removeFromFavourites } // don't need to check isFav since we are in favourites
+                favButtonText={"Remove From Favourites"}
                 className="movie"
             />
         );

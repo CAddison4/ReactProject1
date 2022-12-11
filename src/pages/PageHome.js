@@ -99,7 +99,8 @@ const PageHome = () => {
             <Movie 
                 key={ movie.id } 
                 movie={ movie } 
-                handleFavourite={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites } 
+                handleFavourite={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites }
+                favButtonText={isFav(favourites, movie.id) ? "Remove From Favourites" : "Add To Favourites" }
                 className="movie"
             />
         );
