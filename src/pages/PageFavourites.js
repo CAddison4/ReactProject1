@@ -44,7 +44,12 @@ const PageFavourites = () => {
 
     function createMovieComponents() {
         const movies = favourites.map((movie) => 
-            <Movie key={ movie.id } movie={ movie } handleFavourite={ removeFromFavourites } className="movie"/>
+            <Movie 
+                key={ movie.id } 
+                movie={ movie } 
+                handleFavourite={ removeFromFavourites } // don't need to check isFav since we are in favourites
+                className="movie"
+            />
         );
         return(
             <div className="movies">

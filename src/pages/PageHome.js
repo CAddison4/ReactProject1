@@ -34,6 +34,7 @@ import urlBuilder from '../utils/api-url-builder';
 import Movie from "../components/Movie";
 import '../styles/App.css';
 import { GlobalContext } from '../context/GlobalState';
+import isFav from '../utils/isFav';
 
 const POP_API = "popular";
 const UPCOMING_API = "upcoming";
@@ -95,7 +96,12 @@ const PageHome = () => {
 
     const createMovieComponents = () => {
         const movies = movieData.map((movie) => 
-            <Movie key={ movie.id } movie={ movie } handleFavourite={ addToFavourites } className="movie"/>
+            <Movie 
+                key={ movie.id } 
+                movie={ movie } 
+                handleFavourite={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites } 
+                className="movie"
+            />
         );
         return(
             <div className="movies">

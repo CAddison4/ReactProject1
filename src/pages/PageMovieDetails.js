@@ -30,8 +30,9 @@ import { imgBasePath, localImageFolderPath } from "../globals/globals";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
+import isFav from '../utils/isFav';
 
-const PageMovieDetails = ({handleFavourite }) => {
+const PageMovieDetails = () => {
     const {favourites, addToFavourites, removeFromFavourites} = useContext(GlobalContext);
     const {movieData} = useContext(GlobalContext);
     let { id } = useParams();
@@ -66,7 +67,7 @@ const PageMovieDetails = ({handleFavourite }) => {
 
             <div className="button-bar">
                 <Link to={`/movie/${movie.id}`} className="details-link">Details</Link>
-                <button onClick={handleFavourite} className="favourites-button">Add to Favourites</button>
+                <button onClick={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites } className="favourites-button">Add to Favourites</button>
             </div>
         </div>
 
