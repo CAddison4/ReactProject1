@@ -24,6 +24,7 @@ function GlobalProvider({ children }) {
   }
 
   function addToFavourites(movie){
+    console.log("movie", movie);
     dispatch({
         type: "ADD_TO_FAVOURITES",
         payload: movie,
