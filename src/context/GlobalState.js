@@ -1,11 +1,21 @@
 import React, { createContext, useReducer } from 'react';
 import appReducer from './appReducer';
-import { getFavouritesLS } from "../utils/favourites";
+
+function getFavourites() {
+    let favouritesFromStorage = localStorage.getItem("favourites");
+    if(favouritesFromStorage === null) {
+        favouritesFromStorage = [];
+    }
+    else {
+        favouritesFromStorage = JSON.parse(favouritesFromStorage);
+    }
+    return favouritesFromStorage;
+}
 
 // Initial state
 const initialState = {
   movieData: [],
-  favourites: [], // getFavouritesLS()
+  favourites: getFavourites(),
 };
 
 // Create context
@@ -37,13 +47,6 @@ function GlobalProvider({ children }) {
     });
   };
 
-  // function getFavourites(){
-  //   dispatch({
-  //       type: "GET_FAVOURITES",
-  //       payload: {},
-  //   });
-  // };
-
   return (
     <GlobalContext.Provider
       value={{
@@ -52,7 +55,6 @@ function GlobalProvider({ children }) {
         setMovieData,
         addToFavourites, 
         removeFromFavourites,
-        // getFavourites,
       }}
     >
       {children}

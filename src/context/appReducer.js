@@ -1,5 +1,4 @@
 import removeArrayItem from "../utils/remove-array-item";
-import { addToFavouritesLS, removeFromFavouritesLS } from "../utils/favourites";
 // maybe refactor to make a local storage class so all of these functions imported can be rewritten as methods and more clear
 
 function appReducer(state, action) {
@@ -11,11 +10,10 @@ function appReducer(state, action) {
         };
        case 'ADD_TO_FAVOURITES':
         {
-            // add to local storage
-            // addToFavouritesLS(action.payload);
-            // save to context
             const newFavourites = [...state.favourites, action.payload];
-            console.log("after add", newFavourites);
+            // add to local storage
+            localStorage.setItem("favourites", JSON.stringify(newFavourites));
+            // add to state
             return {
                 ...state,
                 favourites: newFavourites,
@@ -23,25 +21,16 @@ function appReducer(state, action) {
         }
        case 'REMOVE_FROM_FAVOURITES':
         {
-            // remove from local storage
-            // removeFromFavouritesLS(action.payload);
-            // remove from context
-            const favouritesCopy = state.favourites;
+            const favouritesCopy = [...state.favourites];
             const newFavourites = removeArrayItem(action.payload, favouritesCopy);
-            console.log("after remove", newFavourites);
+            // remove from local storage
+            localStorage.setItem("favourites", JSON.stringify(newFavourites));
+            // remove from state
             return {
               ...state,
               favourites: newFavourites,
             };  
         }
-        // case 'GET_FAVOURITES':
-        // {
-        //     // load from local storage
-        //     return {
-        //       ...state,
-        //       favourites: getFavouritesLS(),
-        //     };
-        // }
       default:
         return state;
     }
