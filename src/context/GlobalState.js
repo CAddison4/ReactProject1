@@ -47,6 +47,17 @@ function GlobalProvider({ children }) {
     });
   };
 
+  function isFavourite(targetMovie){
+    const favourites = [...state.favourites];
+    const targetId = targetMovie.id; // id of movie to check
+    if(favourites.length === 0){
+        return false;
+    }
+      
+    // Checks whether id matches the id of any favourited movie
+    return favourites.some((movie) => movie.id === targetId);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -55,6 +66,7 @@ function GlobalProvider({ children }) {
         setMovieData,
         addToFavourites, 
         removeFromFavourites,
+        isFavourite,
       }}
     >
       {children}

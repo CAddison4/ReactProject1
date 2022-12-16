@@ -1,34 +1,22 @@
-//About Page
-// - All the requirements from the “All Pages” requirements plus...
-// - A simple generic description about the application
-// - Meet the TMDb attribution requirements on this page
-//     o The TMDb attribution requirements include showing the TMDb logo and 
-//       the following message:
-//              "This product uses the TMDb API but is not endorsed or certified 
-//               by TMDb."
-//              The TMDb logo should be less prominent then the application logo 
-//               and the logo should be placed in a way that does not give the 
-//               appearance that your application is endorsed by TMDb
-//              Read about attribution requirements on the FAQ page (look under the 
-//               “What are the attribution requirements?” section)
-//                 • https://www.themoviedb.org/faq/api
-//                 • Click the link below for TMDb logo images:
-//                      o https://www.themoviedb.org/about/logos-attribution
-
 import { useEffect } from 'react';
-import { appTitle } from '../globals/globals';
+import { appTitle, localImageFolderPath } from '../globals/globals';
 import '../styles/App.css';
 
 const PageAbout = () => {
-
+	// update title
 	useEffect(() => {
 		document.title = `${appTitle} - About`;
 	}, []);
 
 	return (
 		<section>
-			<h2>About Page</h2>
-			<p>Saepe vitae deserunt cupiditate vel reiciendis adipisci quasi. At, dolore qui, saepe similique id repellat ipsam sapiente repellendus commodi deleniti natus itaque hic temporibus nam nobis tempora enim suscipit quas!</p>
+			<h2>About</h2>
+			<p>The Movie App allows you to explore movies and save your favourites.</p>
+			<p>Browse by popularity, rating, upcoming, or currently playing.</p>
+
+			<p>The Movie App is intended to be used exclusively for educational purposes.</p>
+			<p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+			<img src={`${localImageFolderPath}tmbd-logo.svg`} alt="TMDB logo" className="tmdb-logo"/>
 		</section>
 	);
 	

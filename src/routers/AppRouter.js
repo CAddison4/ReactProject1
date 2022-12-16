@@ -18,19 +18,14 @@ function AppRouter() {
   return (
     <BrowserRouter>
     <GlobalProvider>
-    <div className="wrapper">
+      <div className="wrapper">
         <Header />
         <main>
           <Routes>
             <Route path="/" exact element={<PageHome />} />
-            <Route path="/about" exact element={<PageAbout/>} />
+            <Route path="/about" element={<PageAbout/>} />
             <Route path="/favourites" element={<PageFavourites />} />
-            <Route
-              path="/movie/:id"
-              exact
-              element={<PageMovieDetails />}
-            />
-
+            <Route path="/movie/:id" element={<PageMovieDetails />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

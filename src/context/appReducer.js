@@ -1,4 +1,4 @@
-import removeArrayItem from "../utils/remove-array-item";
+import removeArrayItem from "../utils/removeArrayItem";
 // maybe refactor to make a local storage class so all of these functions imported can be rewritten as methods and more clear
 
 function appReducer(state, action) {
@@ -21,8 +21,8 @@ function appReducer(state, action) {
         }
        case 'REMOVE_FROM_FAVOURITES':
         {
-            const favouritesCopy = [...state.favourites];
-            const newFavourites = removeArrayItem(action.payload, favouritesCopy);
+            const favourites = [...state.favourites];
+            const newFavourites = removeArrayItem(action.payload, favourites);
             // remove from local storage
             localStorage.setItem("favourites", JSON.stringify(newFavourites));
             // remove from state

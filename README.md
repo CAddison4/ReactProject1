@@ -12,14 +12,14 @@ iii.	Individual Movie Page
 iv.	My Favourites Page -->
 2.)	For this project, the web application does not (yet) need to be mobile responsive.  Ultimately, if you want to use this in your portfolio, you will want it to be fully responsive, but we will revisit this during the Front-End Web Development 2 module.
 3.)	Be well styled, with a usable user interface that follows basic design best practices:
-a.	Text content is readable
+<!-- a.	Text content is readable
 b.	Elements are in alignment
 c.	Good spacing between elements
-d.	Application navigation that is present on all the application’s pages 
+d.	Application navigation that is present on all the application’s pages  -->
 
-4.)	Use The Movie DB API to get your movie data for use in this application
+<!-- 4.)	Use The Movie DB API to get your movie data for use in this application
      a.	Details on how to setup an account and get your API key are shown further down
-5.)	The application should use the browser’s local storage to store the users favourited movies which will be used on the “My Favourites” page
+5.)	The application should use the browser’s local storage to store the users favourited movies which will be used on the “My Favourites” page -->
 <!-- 6.)	Build your project using the Create React App build script and upload it to your portfolio server and submit a link to your application on the Learning Hub  -->
 <!-- a.	Detailed instructions on how to properly upload your application to your portfolio server will be provided during the course -->
 7.)	Upload your raw development files to the Learning Hub. 
@@ -68,25 +68,25 @@ o	Popular
 o	Top Rated
 o	Now Playing
 o	Upcoming (yet to be released) -->
--	On initial load of the application the page should display 12 of the most current popular movies (The Movie DB considers popular movies to be those that have the most ratings) 
+<!-- -	On initial load of the application the page should display 12 of the most current popular movies (The Movie DB considers popular movies to be those that have the most ratings) 
 o	The user can switch this list by using the form select or other UI element to change these 12 movies to:
 	The 12 most highly rated movies currently out
 	The 12 most recently released movies (movies that are currently playing)
-	The next 12 movies that will be released soon (upcoming)
-o	Each movie should display the following information:
+	The next 12 movies that will be released soon (upcoming) -->
+<!-- o	Each movie should display the following information: -->
 <!-- 	The movie’s poster -->
-•	If a poster is not available, then you should load a generic placeholder image
+<!-- •	If a poster is not available, then you should load a generic placeholder image -->
 <!-- 	The movie’s title -->
 <!-- 	The movie’s release date
 	The movie’s rating (review rating – example: 67%) -->
 <!-- 	A short summary about the movie -->
-	A “More Info” button that the user can click on to get additional information on the individual movie page
-•	Optionally the entire movie listing can be clickable to the individual movie page
+<!-- 	A “More Info” button that the user can click on to get additional information on the individual movie page -->
+<!-- •	Optionally the entire movie listing can be clickable to the individual movie page -->
 
 
 
 About Page
--	All the requirements from the “All Pages” requirements plus…
+<!-- -	All the requirements from the “All Pages” requirements plus…
 -	A simple generic description about the application
 -	Meet the TMDb attribution requirements on this page
 o	The TMDb attribution requirements include showing the TMDb logo and the following message:
@@ -95,9 +95,9 @@ o	The TMDb attribution requirements include showing the TMDb logo and the follow
 	Read about attribution requirements on the FAQ page (look under the “What are the attribution requirements?” section)
 •	https://www.themoviedb.org/faq/api
 •	Click the link below for TMDb logo images:
-o	https://www.themoviedb.org/about/logos-attribution
+o	https://www.themoviedb.org/about/logos-attribution -->
 Individual Movie Page
--	This page is accessed when a user clicks on the “More Info” link on an individual movie 
+<!-- -	This page is accessed when a user clicks on the “More Info” link on an individual movie 
 -	All the requirements from the “All Pages” requirements plus…
 -	The movie’s poster (or generic placeholder if no poster is available)
 -	The movie’s title
@@ -108,9 +108,9 @@ Individual Movie Page
 o	When a user favourites a movie, the application should store information about the movie in localstorage using the localstorage web api
 o	When a user unfavourites a movie that movie should be removed from localstorage
  
- 
+  -->
 My Favourites Page
--	All the requirements from the “All Pages” requirements plus…
+<!-- -	All the requirements from the “All Pages” requirements plus…
 -	If the user has NO favourited movies, then:
 o	Display a message similar to:
 	“Sorry you have no favourited movies. Return to the home page to add a favourite movie”
@@ -123,7 +123,7 @@ o	Each movie should display the following information
 	The movie’s rating (review rating – example: 67%)
 	A short summary of the movie’s plot
 	A “More Info” button that the user can click on to get additional information on the individual movie page
-•	Optionally the entire movie listing can be clickable to the individual movie page
+•	Optionally the entire movie listing can be clickable to the individual movie page -->
 FAQ
 Q: Can I work in a team?
 A: Yes, you can work in a team of up to 4 students, but this is optional.  You can work solo if you wish.

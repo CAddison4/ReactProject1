@@ -86,22 +86,23 @@ ul {
 }
 
 /* Movie Card Styles */
-.movies {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movie {
-  flex: 1 1 300px;
-}
-
 .movie-card {
   margin: 10px;
   border: dashed 2px grey;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: "poster     details"
+  grid-template-areas: "poster     info"
                        "button-bar button-bar";
+  grid-gap: 10px;
+}
+
+.movie-details {
+  margin: 10px;
+  border: dashed 2px grey;
+  display: grid;
+  grid-template-areas: "poster"
+                       "info"
+                       "button-bar";
   grid-gap: 10px;
 }
 
@@ -109,8 +110,8 @@ ul {
   grid-area: poster;
 }
 
-.movie-details {
-  grid-area: details;
+.movie-info {
+  grid-area: info;
 }
 
 .button-bar {
@@ -123,7 +124,7 @@ ul {
   flex: 1;
 }
 
-.details-link {
+.button-bar-link {
   flex: 1;
 }
 
@@ -131,12 +132,11 @@ ul {
 /* Footer Styles */
 
 footer {
-  padding: 1em 1.25em;
+  padding: 20px;
   border-top: 1px dotted #aeaeae;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   width: 100%;
-  margin-left: -1.25em;
 }
 
 footer p {
@@ -147,4 +147,8 @@ footer p {
   font-size: x-small;
   display: block;
   width: 100%;
+}
+
+.tmdb-logo {
+  max-width: 60px;
 }

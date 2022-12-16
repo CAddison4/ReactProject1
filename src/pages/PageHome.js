@@ -1,81 +1,44 @@
-//Home Page
-// - All the requirements from the “All Pages” requirements plus...
-// - Form select element or other UI element (select box, radio buttons, links or 
-//   just buttons...the UI is up to you) that allows a user to change the current 
-//   movies displayed between the following options:
-//     o Popular
-//     o Top Rated
-//     o Now Playing
-//     o Upcoming (yet to be released)
-// - On initial load of the application the page should display 12 of the most current 
-//   popular movies (The Movie DB considers popular movies to be those that have the 
-//   most ratings)
-//     o The user can switch this list by using the form select or other UI element to 
-//       change these 12 movies to:
-//          The 12 most highly rated movies currently out
-//          The 12 most recently released movies (movies that are currently playing)
-//          The next 12 movies that will be released soon (upcoming)
-// o Each movie should display the following information:
-//          The movie’s poster
-//             • If a poster is not available, then you should load a generic 
-//               placeholder image
-//          The movie’s title
-//          The movie’s release date
-//          The movie’s rating (review rating – example: 67%)
-//          A short summary about the movie
-//          A “More Info” button that the user can click on to get additional 
-//           information on the individual movie page
-//             • Optionally the entire movie listing can be clickable to the 
-//               individual movie page
-
-import { useContext, useEffect, useState } from 'react';
-import { appTitle } from '../globals/globals';
-import urlBuilder from '../utils/api-url-builder';
-import Movie from "../components/Movie";
 import '../styles/App.css';
+import { appTitle } from '../globals/globals';
 import { GlobalContext } from '../context/GlobalState';
-import isFav from '../utils/isFav';
+import { useContext, useEffect, useState } from 'react';
+import urlBuilder from '../utils/apiUrlBuilder';
+import MovieCard from "../components/MovieCard";
 
-const POP_API = "popular";
+// filters for building api endpopint for movie requests
+const POP_API = "popular"; // default
 const UPCOMING_API = "upcoming";
 const NOW_PLAYING_API = "now_playing";
 const TOP_RATED_API = "top_rated";
 
 const PageHome = () => {
-    const [movieFilter, setMovieFilter] = useState("popular");
+    // make movieFilter a state variable
+    const [movieFilter, setMovieFilter] = useState(POP_API);
+    // access required global vars and functions
     const {movieData, setMovieData} = useContext(GlobalContext);
-    const {favourites, addToFavourites, removeFromFavourites} = useContext(GlobalContext);
+    const {isFavourite} = useContext(GlobalContext);
 
+    // fetch movie data from TMDB and save results to movieData
     const fetchMovieData = (filterStr) => {
         const apiEndpoint = urlBuilder(filterStr);
-        const filteredMovieData = fetch(apiEndpoint)
+        fetch(apiEndpoint)
             .then(res => res.json())
+            .then(data => {
+                setMovieData(data.results)
+            })
             .catch((error) => {console.log(error.message)});
-        filteredMovieData.then(data => {
-            setMovieData(data.results);
-        });
-        // fetch(apiEndpoint)
-        //     .then(res => {
-        //         res.json();
-        //     })
-        //     .then(resDataObj => {
-        //         const newMovieData = resDataObj.results;
-        //         setMovieData(newMovieData);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.message);
-        //     });
     }
 
     useEffect(() => {
-		document.title = `${appTitle} - Movies`;
+		// update title
+        document.title = `${appTitle} - Movies`;
+        // fetch movie data again any time the user changes the movieFilter state 
         fetchMovieData(movieFilter);
 	}, [movieFilter]);
 
-
+    // adjust API endpoint for selected movieFilter
     function updateMovieFilter(e) {
         switch(e.target.value){
-            // console.log(e.target.value)
             case(POP_API):
                setMovieFilter(POP_API)
                break;
@@ -94,40 +57,31 @@ const PageHome = () => {
         }
     }
 
-    const createMovieComponents = () => {
-        const movies = movieData.map((movie) => 
-            <Movie 
+    const createMovieCards = () => {
+        const movieCards = movieData.map((movie) => 
+            <MovieCard 
                 key={ movie.id } 
                 movie={ movie } 
-                handleFavourite={ isFav(favourites, movie.id) ? removeFromFavourites : addToFavourites }
-                favButtonText={isFav(favourites, movie.id) ? "Remove From Favourites" : "Add To Favourites" }
-                className="movie"
+                isFav={ isFavourite(movie) }
             />
         );
         return(
-            <div className="movies">
-                {movies}
+            <div className="movie-cards">
+                {movieCards}
             </div>
         );
-    }
-
-    // handleDetails, handleFavourite 
-
-    const handleDetails = () => {
-        return
     }
     
     return (
         <section>
             <h2>Movies Page</h2>
             <select onChange={(updateMovieFilter)}>
-                <option value="">Filter By Group</option>
                 <option value="popular">Popular</option>
                 <option value="top_rated">Top Rated</option>
                 <option value="upcoming">Upcoming</option>
                 <option value="now_playing">Now Playing</option>
             </select>
-            {createMovieComponents()}
+            {createMovieCards()}
         </section>
     );
 
