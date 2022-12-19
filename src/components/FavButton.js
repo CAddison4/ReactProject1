@@ -4,8 +4,8 @@ import { GlobalContext } from '../context/GlobalState';
 function FavButton({isFav, movie}) {
     const {addToFavourites, removeFromFavourites} = useContext(GlobalContext);
     const favButtonText = {
-        add: "Add to favourites",
-        remove: "Remove from favourites",
+        add: <div className="unfav"><img src={require("../favourites-buttons/heart.png")} alt="unfavourited heart"></img></div>,
+        remove: <div className="fav"><img src={require("../favourites-buttons/heart-liked.png")} alt="favourited heart"></img></div>,
     };
     return(
         <button 

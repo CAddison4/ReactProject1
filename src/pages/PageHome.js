@@ -74,7 +74,8 @@ const PageHome = () => {
     
     return (
         <section>
-            <h2>Movies Page</h2>
+            {/* <h2>Movies Page</h2> */}
+
             <select onChange={(updateMovieFilter)}>
                 <option value="popular">Popular</option>
                 <option value="top_rated">Top Rated</option>

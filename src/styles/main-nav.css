@@ -27,7 +27,7 @@
   }
   
   .main-nav li:not(:first-child) a {
-    border-left: 3px solid #e1e1e1;
+    /* border-left: 3px solid #e1e1e1; */
   }
   .main-nav a:hover,
   .main-nav a:focus,
