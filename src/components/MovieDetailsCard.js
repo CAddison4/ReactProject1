@@ -7,11 +7,12 @@ import MovieInfo from './MovieInfo';
 
 function MovieDetailsCard({movie, isFav}) {
     return(
-        <div className="movie-details">
-            <MoviePoster movie={movie} posterSize={posterSizes.details}/>
-            <MovieInfo movie={movie}/>
-            <div className="button-bar">
-                <Link to={"/"} className="button-bar-link">Back to Movies</Link>
+        <div className="movie-details-pg">
+            <div className="poster"><MoviePoster movie={movie} posterSize={posterSizes.details}/></div>
+            <div className="info"><MovieInfo movie={movie}/></div>
+            
+            <div className="button-bar-details">
+                <Link to={"/"} className="button-bar-link-details">Back to Movies</Link>
                 <FavButton movie={movie} isFav={isFav}/>
             </div>
         </div>

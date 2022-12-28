@@ -136,7 +136,7 @@ ul li{
 }
 
 /* Movie Card List Style */
-.movie-cards{
+/* .movie-cards{
   display: grid;
   grid-template-columns: 32% 32% 32%;
   grid-gap: 20px;
@@ -145,7 +145,7 @@ ul li{
   margin: 0 auto;
   position: relative;
   
-}
+} */
 /* Movie Card Styles */
 .movie-card {
   margin: 10px;
@@ -157,11 +157,13 @@ ul li{
                        "button-bar button-bar";
   grid-gap: 10px;
   height: 375px;
-  min-width: 400px;
+  min-width: 425px;
+  max-width: 425px;
 }
 
 .movie-card > .button-bar{
   position: relative;
+  /* top: 30px; */
 }
 
 .movie-details {
@@ -182,12 +184,12 @@ ul li{
 
 .movie-info {
   grid-area: info;
-  padding-top: 30px;
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   max-width: 90%;
-  min-height: 100px;
-  max-height: 100px;
+  min-height: 10px;
+  max-height: 10px;
   /* overflow: scroll;
   text-overflow: clip ellipsis; */
 }
@@ -274,6 +276,46 @@ ul li{
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
+
+
+/* Movie Details Page */
+
+.movie-details-pg{
+  margin: 10px;
+  /* border: dashed 2px grey; */
+  background-color: #183336b2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "poster     info"
+                       "button-bar button-bar";
+  grid-gap: 10px;
+  height: 375px;
+  min-width: 400px;
+  max-width: 800px;
+  padding-bottom: 800px;
+}
+
+.movie-poster{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.poster{
+  display: flex;
+  justify-content: center;
+}
+.info{
+  grid-area: info;
+  text-align: left;
+}
+.button-bar-details{
+  padding-top: 100px;
+}
+
+.button-bar-link-details{
+
+}
 /* Footer Styles */
 
 .movie-details .movie-info-desc{
@@ -282,8 +324,9 @@ ul li{
 footer {
   padding: 20px;
   border-top: 1px dotted #aeaeae;
-  /* position: absolute;
-  bottom: 0; */
+  position: relative;
+  margin-top: 30px;
+  bottom: 0px;
   width: 100%;
 }
 
@@ -299,4 +342,29 @@ footer p {
 
 .tmdb-logo {
   max-width: 60px;
+}
+
+@media (min-width: 1075px){
+  .movie-cards{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 20px;
+    width: 90%;
+    min-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    
+  }
+}
+@media (min-width: 1520px){
+  .movie-cards{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-gap: 20px;
+    width: 90%;
+    min-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    
+  }
 }

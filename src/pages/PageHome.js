@@ -24,7 +24,7 @@ const PageHome = () => {
         fetch(apiEndpoint)
             .then(res => res.json())
             .then(data => {
-                setMovieData(data.results)
+                setMovieData(data.results.slice(0,12))
             })
             .catch((error) => {console.log(error.message)});
     }
