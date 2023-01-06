@@ -1,4 +1,4 @@
-import '../styles/App.css';
+import '../styles/style.css';
 import { appTitle } from '../globals/globals';
 import { Link } from "react-router-dom";
 import { useEffect, useContext } from 'react';

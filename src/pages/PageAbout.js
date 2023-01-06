@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { appTitle, localImageFolderPath } from '../globals/globals';
-import '../styles/App.css';
+import '../styles/style.css';
 
 const PageAbout = () => {
 	// update title

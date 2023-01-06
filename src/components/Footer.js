@@ -1,5 +1,5 @@
 import { getYear } from "../utils/dates";
-import '../styles/App.css';
+// import '../styles/style.css';
 
 const Footer = () => (
   <footer>

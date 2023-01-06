@@ -1,4 +1,4 @@
-import '../styles/App.css';
+import '../styles/style.css';
 import { appTitle } from '../globals/globals';
 import { GlobalContext } from '../context/GlobalState';
 import { useContext, useEffect, useState } from 'react';
@@ -73,15 +73,17 @@ const PageHome = () => {
     }
     
     return (
-        <section>
+        <section className="home-page">
             {/* <h2>Movies Page</h2> */}
-
-            <select onChange={(updateMovieFilter)}>
-                <option value="popular">Popular</option>
-                <option value="top_rated">Top Rated</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="now_playing">Now Playing</option>
-            </select>
+            <div className="filter">
+                <p>Filter Movies By: </p>
+                <select onChange={(updateMovieFilter)}>
+                    <option value="popular">Popular</option>
+                    <option value="top_rated">Top Rated</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="now_playing">Now Playing</option>
+                </select>
+            </div>
             {createMovieCards()}
         </section>
     );
