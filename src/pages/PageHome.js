@@ -73,7 +73,7 @@ const PageHome = () => {
     }
     
     return (
-        <section className="home-page">
+        <section className="movie-grid-layout">
             {/* <h2>Movies Page</h2> */}
             <div className="filter">
                 <p>Filter Movies By: </p>

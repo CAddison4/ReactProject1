@@ -40,7 +40,7 @@ const PageFavourites = () => {
     } 
     
     return (
-        <section>
+        <section className='movie-grid-layout'>
             <h2>Favourites</h2>
             {favourites.length > 0 ?  createMovieCards() : displayEmptyMessage()}
         </section>
