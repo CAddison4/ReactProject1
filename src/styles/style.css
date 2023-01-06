@@ -148,14 +148,20 @@ header > .main-nav {
 .movie-info {
     text-overflow: ellipsis;
     overflow: hidden;
+    height: 130px;
+    
 }
 
 .movie-info-desc{
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.movie-info-details{
+    max-width: 60%
 }
 
 .button-bar {
@@ -163,6 +169,10 @@ header > .main-nav {
     justify-content: space-between;
     width: 100%;
     align-items: center;
+}
+
+.movie-card > .button-bar {
+    margin-top: auto;
 }
 
 .movie-details-link {

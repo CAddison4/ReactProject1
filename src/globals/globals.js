@@ -4,6 +4,6 @@ export const apiKey = "700f3e20f412b65a8df05a9f11ed5694";
 export const imgBasePath = "https://image.tmdb.org/t/p/"
 export const posterSizes = {
     card: "w200/",
-    details: "w185/",
+    details: "w342/",
 };
 export const localImageFolderPath = process.env.PUBLIC_URL + "/assets/images/";

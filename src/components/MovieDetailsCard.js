@@ -7,7 +7,7 @@ import MovieInfo from './MovieInfo';
 
 function MovieDetailsCard({movie, isFav}) {
     return(
-        <div className="movie-details-pg">
+        <div className="movie-card">
             <div className="poster"><MoviePoster movie={movie} posterSize={posterSizes.details}/></div>
             <div className="info"><MovieInfo movie={movie}/></div>
             
