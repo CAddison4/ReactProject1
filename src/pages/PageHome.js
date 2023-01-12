@@ -4,7 +4,6 @@ import { GlobalContext } from '../context/GlobalState';
 import { useContext, useEffect, useState } from 'react';
 import urlBuilder from '../utils/apiUrlBuilder';
 import MovieCard from "../components/MovieCard";
-import { posterSizes } from "../globals/globals";
 
 // filters for building api endpopint for movie requests
 const POP_API = "popular"; // default
@@ -65,7 +64,7 @@ const PageHome = () => {
                 movie={ movie } 
                 isFav={ isFavourite(movie) }
                 classes={{movieInfo: "movie-info", movieInfoDesc:"movie-info-desc"}}
-                posterSize = {posterSizes.card}
+                isDetailsPage = {false}
             />
         );
         return(

@@ -3,9 +3,7 @@ import { appTitle } from '../globals/globals';
 import { useParams, Navigate } from "react-router-dom";
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
-import MovieDetailsCard from '../components/MovieDetailsCard';
 import MovieCard from '../components/MovieCard';
-import { posterSizes } from "../globals/globals";
 
 const PageMovieDetails = () => {
     // access required global vars and functions
@@ -34,7 +32,7 @@ const PageMovieDetails = () => {
             movie={ movie }
             isFav={ isFavourite(movie) }
             classes={{movieInfo: "movie-info-details", movieInfoDesc:"movie-info-desc-details"}}
-            posterSize = {posterSizes.details}    
+            isDetailsPage = {true}    
         />
     );
 };

@@ -175,11 +175,12 @@ header > .main-nav {
     margin-top: auto;
 }
 
-.movie-details-link {
+.button-bar-link {
     max-width: 150px;
     color: white;
-    text-decoration: none;
+    text-decoration: underline;
     min-width: 30%;
+    text-align: right;
 }
 
 .favourites-button {

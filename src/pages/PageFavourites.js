@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import MovieCard from '../components/MovieCard';
-import { posterSizes } from "../globals/globals";
 
 const PageFavourites = () => {
     // access required global var
@@ -32,7 +31,7 @@ const PageFavourites = () => {
                 movie={ movie } 
                 isFav={ true }
                 classes={{movieInfo: "movie-info", movieInfoDesc:"movie-info-desc"}}
-                posterSize = {posterSizes.card}
+                isDetailsPage = {false}
             />
         );
         return(
