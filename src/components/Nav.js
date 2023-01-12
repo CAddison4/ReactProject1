@@ -2,22 +2,18 @@
 import { NavLink } from "react-router-dom";
 import "../styles/style.css";
 
-const Nav = () => {
-  function blur(e) {
-    e.target.blur();
-  }
-
+const Nav = ({ blur }) => {
   return (
-    <nav className="main-nav" onClick={blur}>
+    <nav className="main-nav">
       <ul>
         <li>
-          <NavLink to="/">Movies</NavLink>
+          <NavLink to="/" onClick={blur}>Movies</NavLink>
         </li>
         <li>
-          <NavLink to="/favourites">Favourites</NavLink>
+          <NavLink to="/favourites" onClick={blur}>Favourites</NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about" onClick={blur}>About</NavLink>
         </li> 
       </ul>
     </nav>

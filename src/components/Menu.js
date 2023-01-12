@@ -2,15 +2,16 @@ import { slide as MenuOptions} from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-function Menu() {
+function Menu({blur}) {
     const [isOpen, setOpen] = useState(false)
 
     const handleIsOpen = () => {
       setOpen(!isOpen)
     }
   
-    const closeSideBar = () => {
+    const closeSideBar = (event) => {
       setOpen(false)
+      blur(event)
     }
 
     return (
